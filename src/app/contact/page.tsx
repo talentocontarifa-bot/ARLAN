@@ -24,50 +24,56 @@ export default function Contact() {
 
                 <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-24">
 
-                    {/* Info */}
-                    <div className="space-y-12">
-                        <div>
-                            <h2 className="text-3xl font-serif text-arlan-espresso mb-8 border-b border-arlan-wheat pb-4 inline-block">Directorio</h2>
+                    <div className="space-y-16">
+                        <div className="space-y-12">
+                            <h2 className="text-4xl font-heading font-medium text-arlan-espresso mb-8 border-b-2 border-arlan-sand pb-4 inline-block tracking-tight">Directorio</h2>
                             <div className="space-y-10 text-arlan-hazelnut">
-                                <div className="flex items-start gap-6">
-                                    <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-xl shadow-lg shadow-arlan-truffle/10 shrink-0">
+                                <div className="flex items-start gap-8 group">
+                                    <div className="w-14 h-14 rounded-2xl bg-arlan-linen/50 flex items-center justify-center text-xl shadow-lg shadow-arlan-truffle/10 shrink-0 group-hover:bg-arlan-sand group-hover:text-white transition-all duration-300">
                                         📍
                                     </div>
-                                    <div className="space-y-1">
-                                        <h3 className="font-bold text-arlan-espresso uppercase tracking-widest text-xs">Showroom</h3>
-                                        <p className="font-light">CDMX & Sureste Méxicano<br />Atención previa cita.</p>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-start gap-6">
-                                    <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-xl shadow-lg shadow-arlan-truffle/10 shrink-0">
-                                        📞
-                                    </div>
-                                    <div className="space-y-1">
-                                        <h3 className="font-bold text-arlan-espresso uppercase tracking-widest text-xs">WhatsApp</h3>
-                                        <p className="font-light hover:text-arlan-sand transition-colors">
-                                            <a href="tel:+525512345678">+52 (55) 1234 5678</a>
+                                    <div className="space-y-2 pt-1 border-l-2 border-transparent group-hover:border-arlan-sand pl-4 transition-all duration-300">
+                                        <h3 className="font-bold text-arlan-espresso uppercase tracking-[0.2em] text-[10px]">Showroom & Oficinas</h3>
+                                        <p className="font-light text-sm leading-relaxed text-balance">
+                                            Zapopan <br />
+                                            Jalisco, México, 45060<br />
+                                            <span className="italic text-[10px] uppercase text-arlan-truffle tracking-widest mt-2 block">Atención con previa cita.</span>
                                         </p>
                                     </div>
                                 </div>
 
-                                <div className="flex items-start gap-6">
-                                    <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-xl shadow-lg shadow-arlan-truffle/10 shrink-0">
+                                <div className="flex items-start gap-8 group">
+                                    <div className="w-14 h-14 rounded-2xl bg-arlan-linen/50 flex items-center justify-center text-xl shadow-lg shadow-arlan-truffle/10 shrink-0 group-hover:bg-arlan-willow group-hover:text-white transition-all duration-300">
+                                        📞
+                                    </div>
+                                    <div className="space-y-2 pt-1 border-l-2 border-transparent group-hover:border-arlan-willow pl-4 transition-all duration-300">
+                                        <h3 className="font-bold text-arlan-espresso uppercase tracking-[0.2em] text-[10px]">Atención Personalizada</h3>
+                                        <p className="font-light hover:text-arlan-willow transition-colors text-lg">
+                                            <a href="tel:+523331720331">33 3172 0331</a>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start gap-8 group">
+                                    <div className="w-14 h-14 rounded-2xl bg-arlan-linen/50 flex items-center justify-center text-xl shadow-lg shadow-arlan-truffle/10 shrink-0 group-hover:bg-arlan-wheat group-hover:text-white transition-all duration-300">
                                         ✉️
                                     </div>
-                                    <div className="space-y-1">
-                                        <h3 className="font-bold text-arlan-espresso uppercase tracking-widest text-xs">Email</h3>
-                                        <p className="font-light hover:text-arlan-sand transition-colors">
-                                            <a href="mailto:hola@arlancelebrations.com">hola@arlancelebrations.com</a>
+                                    <div className="space-y-2 pt-1 border-l-2 border-transparent group-hover:border-arlan-wheat pl-4 transition-all duration-300">
+                                        <h3 className="font-bold text-arlan-espresso uppercase tracking-[0.2em] text-[10px]">Email</h3>
+                                        <p className="font-light hover:text-arlan-wheat transition-colors text-lg">
+                                            <a href="mailto:contacto@arlan.com">contacto@arlan.com</a>
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="p-8 bg-arlan-wheat/20 rounded-[2rem] border border-arlan-wheat/30">
-                            <h3 className="text-xl font-serif text-arlan-espresso mb-4">Misión Celebrations</h3>
-                            <p className="text-arlan-hazelnut font-light text-sm italic">"Convertir cada espacio en un refugio de alegría y buen diseño, priorizando la calidez humana en cada servicio."</p>
+                        <div className="p-10 bg-gradient-to-br from-arlan-wheat/30 to-white/50 rounded-[2.5rem] border border-arlan-wheat/40 relative overflow-hidden group">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-white/40 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl group-hover:scale-150 transition-transform duration-700" />
+                            <h3 className="text-xl font-heading font-medium text-arlan-espresso mb-4 relative z-10">Servicio Boutique</h3>
+                            <p className="text-arlan-hazelnut font-light text-sm leading-relaxed relative z-10">
+                                "Más que rentar mobiliario, ayudamos a construir el escenario perfecto para celebrar los mejores momentos de la vida, priorizando siempre la excelencia y exclusividad."
+                            </p>
                         </div>
                     </div>
 

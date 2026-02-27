@@ -11,7 +11,11 @@ export default function Home() {
       <main className="flex-grow">
 
         {/* HERO SECTION - MODERN ELEGANT SANS */}
-        <section className="relative h-[85vh] w-full flex items-center justify-center pt-20">
+        <section className="relative min-h-[95vh] w-full flex items-center justify-center pt-20 overflow-hidden">
+          {/* Ambient light effects for depth */}
+          <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-gradient-radial from-arlan-sand/30 to-transparent rounded-full blur-[100px] mix-blend-multiply -z-10 animate-float" />
+          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-gradient-radial from-arlan-willow/30 to-transparent rounded-full blur-[100px] mix-blend-multiply -z-10 animate-pulse-slow" />
+
           <div className="max-w-7xl mx-auto px-4 md:px-8 grid md:grid-cols-2 gap-12 items-center h-full">
 
             {/* Left: Text Content */}
@@ -56,7 +60,8 @@ export default function Home() {
                 />
               </div>
               {/* Modern Accents */}
-              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-arlan-sand rounded-2xl rotate-12 -z-10" />
+              <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-gradient-to-br from-arlan-sand to-arlan-wheat rounded-[2rem] rotate-12 -z-10 shadow-2xl" />
+              <div className="absolute -top-12 -left-8 w-24 h-24 bg-arlan-willow/40 backdrop-blur-3xl rounded-full -z-10 blur-xl" />
             </div>
 
           </div>
@@ -109,13 +114,15 @@ export default function Home() {
 
 
         {/* PORTFOLIO HIGHLIGHTS */}
-        <section className="py-32">
-          <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-            <div className="space-y-4">
-              <span className="text-arlan-sand font-heading font-bold tracking-widest uppercase text-xs">Portafolio</span>
-              <h2 className="text-5xl font-heading text-arlan-espresso">Casas de ensueño.</h2>
+        <section className="py-32 relative">
+          <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row justify-between items-end mb-24 gap-6 relative z-10">
+            <div className="space-y-4 relative">
+              <span className="text-arlan-sand font-heading font-bold tracking-[0.4em] uppercase text-[10px] block pl-1">Colección Exclusiva</span>
+              <h2 className="text-6xl md:text-8xl font-heading font-bold text-arlan-espresso tracking-tighter">
+                Escenarios <br /> <span className="text-transparent border-text-espresso border-2" style={{ WebkitTextStroke: '1px #2A2421', color: 'transparent' }}>inolvidables.</span>
+              </h2>
             </div>
-            <Link href="/gallery" className="text-arlan-espresso font-heading font-bold text-sm uppercase tracking-widest border-b-2 border-arlan-espresso pb-1 hover:text-arlan-willow hover:border-arlan-willow transition-all">Ver todo</Link>
+            <Link href="/gallery" className="text-arlan-espresso font-heading font-bold text-[10px] uppercase tracking-[0.3em] border-b-2 border-arlan-espresso pb-2 hover:text-arlan-willow hover:border-arlan-willow transition-all">Explorar Portafolio</Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 md:px-8">
@@ -134,16 +141,20 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CTA - MINIMAL ELEGANT */}
-        <section className="py-40 bg-white">
-          <div className="max-w-4xl mx-auto px-4 text-center space-y-12">
-            <h2 className="text-6xl md:text-8xl font-heading font-bold text-arlan-espresso">Empieza <br /> tu historia.</h2>
-            <p className="text-arlan-hazelnut text-2xl font-light">Solicita una consulta personalizada con nuestro equipo.</p>
+        {/* CTA - DARK PREMIUM ELEGANT */}
+        <section className="py-40 bg-arlan-espresso relative overflow-hidden">
+          {/* Subtle glowing elements */}
+          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-radial from-arlan-sand/20 to-transparent rounded-full blur-[80px] -translate-y-1/2 translate-x-1/3" />
+          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-radial from-arlan-willow/10 to-transparent rounded-full blur-[80px] translate-y-1/3 -translate-x-1/3" />
+
+          <div className="max-w-4xl mx-auto px-4 text-center space-y-12 relative z-10">
+            <h2 className="text-6xl md:text-8xl font-heading font-medium text-arlan-linen">Empieza <br /> tu historia.</h2>
+            <p className="text-arlan-wheat text-xl font-light tracking-wide">La exclusividad se siente. Nosotros la diseñamos para ti.</p>
             <Link
               href="/contact"
-              className="inline-block bg-arlan-espresso text-white px-16 py-6 rounded-full font-heading font-bold transition-all duration-300 hover:bg-arlan-willow shadow-2xl tracking-widest uppercase text-xs"
+              className="inline-block bg-arlan-linen text-arlan-espresso px-16 py-6 rounded-full font-heading font-bold transition-all duration-500 hover:bg-white hover:scale-105 shadow-[0_20px_50px_-10px_rgba(247,241,229,0.2)] tracking-[0.3em] uppercase text-[10px]"
             >
-              Agendar Cita
+              Agendar Cita Privada
             </Link>
           </div>
         </section>

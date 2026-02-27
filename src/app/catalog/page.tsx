@@ -26,11 +26,16 @@ export default function Catalog() {
             <main className="flex-grow pt-20">
 
                 {/* Header */}
-                <section className="bg-arlan-truffle/10 py-32 text-center px-4">
-                    <h1 className="text-6xl font-heading font-medium text-arlan-espresso mb-6">Colección Curada</h1>
-                    <p className="text-arlan-hazelnut max-w-2xl mx-auto font-light text-xl">
-                        Mobiliario de autor diseñado para elevar tus espacios más importantes.
-                    </p>
+                <section className="relative overflow-hidden bg-arlan-truffle/5 py-40 text-center px-4 border-b border-arlan-truffle/10">
+                    <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-arlan-sand/20 rounded-full blur-[120px] mix-blend-multiply opacity-50 -translate-y-1/2" />
+                    <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-arlan-willow/20 rounded-full blur-[100px] mix-blend-multiply opacity-50 translate-y-1/2" />
+                    <div className="relative z-10">
+                        <span className="text-arlan-sand font-heading font-bold tracking-[0.5em] uppercase text-[10px] mb-6 block">Nuestro Inventario</span>
+                        <h1 className="text-6xl md:text-8xl font-heading font-medium text-arlan-espresso mb-8 tracking-tighter">Colección Curada</h1>
+                        <p className="text-arlan-hazelnut max-w-2xl mx-auto font-light text-xl leading-relaxed">
+                            Mobiliario de autor diseñado meticulosamente para elevar tus celebraciones y convertirlas en hitos memorables.
+                        </p>
+                    </div>
                 </section>
 
                 {/* Categories */}
