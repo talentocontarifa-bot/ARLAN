@@ -14,6 +14,19 @@
 
   --animate-float: float 12s ease-in-out infinite;
   --animate-pulse-slow: pulse-slow 8s ease-in-out infinite;
+  --animate-fade-in-up: fade-in-up 1s ease-out forwards;
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes float {
