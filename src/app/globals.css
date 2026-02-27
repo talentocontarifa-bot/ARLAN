@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  --color-arlan-willow: #9EAC8F;
+  --color-arlan-sand: #D2A38A;
+  --color-arlan-truffle: #B4A79E;
+  --color-arlan-hazelnut: #8D7765;
+  --color-arlan-wheat: #E3C096;
+  --color-arlan-linen: #F7F1E5;
+  --color-arlan-espresso: #2A2421;
+
+  --font-sans: var(--font-geist-sans);
+  --font-heading: var(--font-outfit);
+}
+
+:root {
+  --background: #F7F1E5;
+  /* Warm Linen */
+  --foreground: #2A2421;
+  /* Deep Espresso */
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading), sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
