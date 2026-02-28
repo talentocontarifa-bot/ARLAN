@@ -9,11 +9,13 @@
   --color-arlan-linen: #a7ad91;
   --color-arlan-espresso: #2A2421;
 
-  --font-sans: var(--font-geist-sans);
-  --font-heading: var(--font-outfit);
+  --font-sans: "kodomonoji", sans-serif;
+  --font-heading: "kodomonoji", sans-serif;
   --font-script: "kodomonoji", cursive;
 
   --animate-float: float 12s ease-in-out infinite;
+  --animate-float-1: float-random-1 4s ease-in-out infinite;
+  --animate-float-2: float-random-2 6s ease-in-out infinite;
   --animate-pulse-slow: pulse-slow 8s ease-in-out infinite;
   --animate-fade-in-up: fade-in-up 1s ease-out forwards;
 }
@@ -34,15 +36,35 @@
 
   0%,
   100% {
-    transform: translate(0, 0) scale(1);
+    transform: translateY(0) scale(1);
   }
 
-  33% {
-    transform: translate(30px, -50px) scale(1.1);
+  50% {
+    transform: translateY(-30px) scale(1.05);
+  }
+}
+
+@keyframes float-random-1 {
+
+  0%,
+  100% {
+    transform: translateY(0);
   }
 
-  66% {
-    transform: translate(-20px, 20px) scale(0.9);
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes float-random-2 {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(15px);
   }
 }
 
