@@ -21,18 +21,20 @@ export default function Home() {
     <>
       {/* FULLSCREEN INTRO LOADER */}
       <div
-        className={`fixed inset-0 z-[100] bg-arlan-espresso flex flex-col items-center justify-center transition-all duration-1000 ease-in-out ${showIntro ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
+        className={`fixed inset-0 z-[100] bg-[#A7AD91] flex flex-col items-center justify-center transition-all duration-1000 ease-in-out ${showIntro ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
           }`}
       >
         <div className="relative w-72 h-40 md:w-96 md:h-52 animate-float">
           <Image src="/logo-full.svg" alt="ARLAN Logo Full" fill className="object-contain" priority />
         </div>
-        <div className="mt-8 overflow-hidden h-20 flex items-center justify-center w-full">
-          <p className="text-arlan-linen font-script text-3xl md:text-5xl animate-fade-in-up font-normal tracking-normal normal-case">A la altura de tus sueños</p>
+        <div className="mt-8 flex items-center justify-center w-full">
+          <p className="text-arlan-espresso font-script text-3xl md:text-5xl animate-float font-normal tracking-[0.1em] lowercase text-center leading-relaxed">
+            a la altura <br /> de tus sueños
+          </p>
         </div>
       </div>
 
-      <div className={`min-h-screen flex flex-col bg-arlan-linen text-arlan-espresso font-sans transition-opacity duration-1000 delay-500 ${showIntro ? "opacity-0" : "opacity-100"}`}>
+      <div className={`min-h-screen flex flex-col bg-[#F7F1E5] text-arlan-espresso font-sans transition-opacity duration-1000 delay-500 ${showIntro ? "opacity-0" : "opacity-100"}`}>
         <Navbar />
 
         <main className="flex-grow">
@@ -49,10 +51,9 @@ export default function Home() {
               <div className="z-10 space-y-10 order-2 md:order-1 text-center md:text-left">
                 <div className="space-y-6">
                   <h2 className="text-arlan-hazelnut font-sans tracking-[0.4em] uppercase text-xs animate-fade-in opacity-80">Mobiliario de Autor</h2>
-                  <h1 className="text-6xl md:text-8xl font-heading font-bold text-arlan-espresso leading-[1.1] tracking-tight">
-                    A la altura <br />
-                    <span className="text-arlan-sand">de tus sueños.</span>
-                  </h1>
+                  <div className="relative w-72 h-32 md:w-96 md:h-48 mb-6">
+                    <Image src="/slogan.svg" alt="A la altura de tus sueños" fill className="object-contain object-left" priority />
+                  </div>
                   <p className="text-xl text-arlan-hazelnut max-w-lg font-light leading-relaxed">
                     En ARLAN diseñamos atmósferas que reflejan tu estilo, combinando elegancia contemporánea con calidez orgánica para crear escenarios inolvidables.
                   </p>
@@ -74,21 +75,17 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Right: Feature Image with Modern Composition */}
-              <div className="relative h-[45vh] md:h-[65vh] order-1 md:order-2 px-4">
-                <div className="absolute inset-0 bg-arlan-wheat/20 rounded-[3rem] transform -rotate-3" />
-                <div className="relative h-full w-full rounded-[2.5rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(42,36,33,0.3)]">
+              {/* Right: Feature Image without Container */}
+              <div className="relative h-[45vh] md:h-[75vh] order-1 md:order-2 px-4 flex justify-center items-center">
+                <div className="relative w-full h-full animate-float">
                   <Image
-                    src="/images/hero-1.png"
-                    alt="Diseño Exclusivo Arlan"
+                    src="/images/header.webp"
+                    alt="Header Image"
                     fill
-                    className="object-cover"
+                    className="object-contain drop-shadow-2xl"
                     priority
                   />
                 </div>
-                {/* Modern Accents */}
-                <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-gradient-to-br from-arlan-sand to-arlan-wheat rounded-[2rem] rotate-12 -z-10 shadow-2xl" />
-                <div className="absolute -top-12 -left-8 w-24 h-24 bg-arlan-willow/40 backdrop-blur-3xl rounded-full -z-10 blur-xl" />
               </div>
 
             </div>
