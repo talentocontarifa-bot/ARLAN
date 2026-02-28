@@ -21,14 +21,14 @@ export default function Home() {
     <>
       {/* FULLSCREEN INTRO LOADER */}
       <div
-        className={`fixed inset-0 z-[100] bg-arlan-linen flex flex-col items-center justify-center transition-all duration-1000 ease-in-out ${showIntro ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
+        className={`fixed inset-0 z-[100] bg-arlan-espresso flex flex-col items-center justify-center transition-all duration-1000 ease-in-out ${showIntro ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
           }`}
       >
         <div className="relative w-72 h-40 md:w-96 md:h-52 animate-float">
           <Image src="/logo-full.svg" alt="ARLAN Logo Full" fill className="object-contain" priority />
         </div>
         <div className="mt-8 overflow-hidden h-8">
-          <p className="text-arlan-espresso tracking-[0.4em] uppercase text-[10px] md:text-xs font-medium animate-fade-in-up">A la altura de tus sueños</p>
+          <p className="text-arlan-linen tracking-[0.4em] uppercase text-[10px] md:text-xs font-medium animate-fade-in-up">A la altura de tus sueños</p>
         </div>
       </div>
 
