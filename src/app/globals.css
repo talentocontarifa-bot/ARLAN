@@ -6,11 +6,12 @@
   --color-arlan-truffle: #B4A79E;
   --color-arlan-hazelnut: #8D7765;
   --color-arlan-wheat: #E3C096;
-  --color-arlan-linen: #F7F1E5;
+  --color-arlan-linen: #a7ad91;
   --color-arlan-espresso: #2A2421;
 
   --font-sans: var(--font-geist-sans);
   --font-heading: var(--font-outfit);
+  --font-script: "kodomonoji", cursive;
 
   --animate-float: float 12s ease-in-out infinite;
   --animate-pulse-slow: pulse-slow 8s ease-in-out infinite;
@@ -64,8 +65,8 @@
 }
 
 :root {
-  --background: #F7F1E5;
-  /* Warm Linen */
+  --background: #a7ad91;
+  /* Sage Green */
   --foreground: #2A2421;
   /* Deep Espresso */
 }

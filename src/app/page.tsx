@@ -27,8 +27,8 @@ export default function Home() {
         <div className="relative w-72 h-40 md:w-96 md:h-52 animate-float">
           <Image src="/logo-full.svg" alt="ARLAN Logo Full" fill className="object-contain" priority />
         </div>
-        <div className="mt-8 overflow-hidden h-8">
-          <p className="text-arlan-linen tracking-[0.4em] uppercase text-[10px] md:text-xs font-medium animate-fade-in-up">A la altura de tus sueños</p>
+        <div className="mt-8 overflow-hidden h-20 flex items-center justify-center w-full">
+          <p className="text-arlan-linen font-script text-3xl md:text-5xl animate-fade-in-up font-normal tracking-normal normal-case">A la altura de tus sueños</p>
         </div>
       </div>
 
