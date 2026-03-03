@@ -26,41 +26,41 @@ export default function Contact() {
 
                     <div className="space-y-16">
                         <div className="space-y-12">
-                            <h2 className="text-4xl font-heading font-medium text-arlan-espresso mb-8 border-b-2 border-arlan-sand pb-4 inline-block tracking-tight">Directorio</h2>
-                            <div className="space-y-10 text-arlan-hazelnut">
+                            <h2 className="text-4xl font-heading font-medium text-[#F7F1E5] mb-8 border-b-2 border-[#F7F1E5]/30 pb-4 inline-block tracking-tight">Directorio</h2>
+                            <div className="space-y-10 text-[#F7F1E5]/80">
                                 <div className="flex items-start gap-8 group">
-                                    <div className="w-14 h-14 rounded-2xl bg-arlan-linen/50 flex items-center justify-center text-xl shadow-lg shadow-arlan-truffle/10 shrink-0 group-hover:bg-arlan-sand group-hover:text-white transition-all duration-300">
+                                    <div className="w-14 h-14 rounded-2xl bg-[#F7F1E5]/10 flex items-center justify-center text-xl shadow-lg border border-[#F7F1E5]/20 shrink-0 group-hover:bg-[#F7F1E5] group-hover:text-arlan-espresso transition-all duration-300">
                                         📍
                                     </div>
-                                    <div className="space-y-2 pt-1 border-l-2 border-transparent group-hover:border-arlan-sand pl-4 transition-all duration-300">
-                                        <h3 className="font-bold text-arlan-espresso uppercase tracking-[0.2em] text-[10px]">Showroom & Oficinas</h3>
+                                    <div className="space-y-2 pt-1 border-l-2 border-transparent group-hover:border-[#F7F1E5] pl-4 transition-all duration-300">
+                                        <h3 className="font-bold text-[#F7F1E5] uppercase tracking-[0.2em] text-[10px]">Showroom & Oficinas</h3>
                                         <p className="font-light text-sm leading-relaxed text-balance">
                                             Zapopan <br />
                                             Jalisco, México, 45060<br />
-                                            <span className="italic text-[10px] uppercase text-arlan-truffle tracking-widest mt-2 block">Atención con previa cita.</span>
+                                            <span className="italic text-[10px] uppercase text-[#F7F1E5]/60 tracking-widest mt-2 block">Atención con previa cita.</span>
                                         </p>
                                     </div>
                                 </div>
 
                                 <div className="flex items-start gap-8 group">
-                                    <div className="w-14 h-14 rounded-2xl bg-arlan-linen/50 flex items-center justify-center text-xl shadow-lg shadow-arlan-truffle/10 shrink-0 group-hover:bg-arlan-willow group-hover:text-white transition-all duration-300">
+                                    <div className="w-14 h-14 rounded-2xl bg-[#F7F1E5]/10 flex items-center justify-center text-xl shadow-lg border border-[#F7F1E5]/20 shrink-0 group-hover:bg-[#F7F1E5] group-hover:text-arlan-espresso transition-all duration-300">
                                         📞
                                     </div>
-                                    <div className="space-y-2 pt-1 border-l-2 border-transparent group-hover:border-arlan-willow pl-4 transition-all duration-300">
-                                        <h3 className="font-bold text-arlan-espresso uppercase tracking-[0.2em] text-[10px]">Atención Personalizada</h3>
-                                        <p className="font-light hover:text-arlan-willow transition-colors text-lg">
+                                    <div className="space-y-2 pt-1 border-l-2 border-transparent group-hover:border-[#F7F1E5] pl-4 transition-all duration-300">
+                                        <h3 className="font-bold text-[#F7F1E5] uppercase tracking-[0.2em] text-[10px]">Atención Personalizada</h3>
+                                        <p className="font-light hover:text-white transition-colors text-lg">
                                             <a href="tel:+523331720331">33 3172 0331</a>
                                         </p>
                                     </div>
                                 </div>
 
                                 <div className="flex items-start gap-8 group">
-                                    <div className="w-14 h-14 rounded-2xl bg-arlan-linen/50 flex items-center justify-center text-xl shadow-lg shadow-arlan-truffle/10 shrink-0 group-hover:bg-arlan-wheat group-hover:text-white transition-all duration-300">
+                                    <div className="w-14 h-14 rounded-2xl bg-[#F7F1E5]/10 flex items-center justify-center text-xl shadow-lg border border-[#F7F1E5]/20 shrink-0 group-hover:bg-[#F7F1E5] group-hover:text-arlan-espresso transition-all duration-300">
                                         ✉️
                                     </div>
-                                    <div className="space-y-2 pt-1 border-l-2 border-transparent group-hover:border-arlan-wheat pl-4 transition-all duration-300">
-                                        <h3 className="font-bold text-arlan-espresso uppercase tracking-[0.2em] text-[10px]">Email</h3>
-                                        <p className="font-light hover:text-arlan-wheat transition-colors text-lg">
+                                    <div className="space-y-2 pt-1 border-l-2 border-transparent group-hover:border-[#F7F1E5] pl-4 transition-all duration-300">
+                                        <h3 className="font-bold text-[#F7F1E5] uppercase tracking-[0.2em] text-[10px]">Email</h3>
+                                        <p className="font-light hover:text-white transition-colors text-lg">
                                             <a href="mailto:contacto@arlan.com">contacto@arlan.com</a>
                                         </p>
                                     </div>

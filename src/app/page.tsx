@@ -30,7 +30,7 @@ export default function Home() {
           <Image src="/logo-full.svg" alt="ARLAN Logo Full" fill className="object-contain" priority />
         </div>
         <div className="mt-8 flex items-center justify-center w-full">
-          <p className="text-arlan-espresso font-script text-lg md:text-xl font-normal tracking-[0.1em] lowercase text-center leading-loose">
+          <p className="text-arlan-espresso font-script text-4xl md:text-6xl font-normal tracking-[0.1em] lowercase text-center leading-[1.3]">
             <span className="inline-block animate-float-1">a la altura</span><br />
             <span className="inline-block animate-float-2">de tus sueños</span>
           </p>
