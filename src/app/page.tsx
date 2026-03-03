@@ -131,7 +131,7 @@ export default function Home() {
                 {/* Sillas */}
                 <div className="group relative aspect-square rounded-[2rem] overflow-hidden bg-arlan-linen shadow-xl">
                   <div className="absolute inset-0 bg-gradient-to-t from-arlan-espresso/80 via-transparent to-transparent z-10" />
-                  <Image src="/mobiliario/01.png" alt="Sillería" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <Image src="/mobiliario/silleria.png" alt="Sillería" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute bottom-8 left-8 z-20">
                     <h3 className="text-white text-3xl font-heading mb-2">Sillería</h3>
                     <p className="text-white/80 font-sans text-sm tracking-wider uppercase">Explorar categoría</p>
@@ -140,7 +140,7 @@ export default function Home() {
                 {/* Inflables */}
                 <div className="group relative aspect-square rounded-[2rem] overflow-hidden bg-arlan-linen shadow-xl md:-translate-y-8">
                   <div className="absolute inset-0 bg-gradient-to-t from-arlan-espresso/80 via-transparent to-transparent z-10" />
-                  <Image src="/mobiliario/02.png" alt="Inflables" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <Image src="/mobiliario/inflable.png" alt="Inflables" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute bottom-8 left-8 z-20">
                     <h3 className="text-white text-3xl font-heading mb-2">Inflables</h3>
                     <p className="text-white/80 font-sans text-sm tracking-wider uppercase">Explorar categoría</p>
@@ -149,7 +149,7 @@ export default function Home() {
                 {/* Banquitos & Salas */}
                 <div className="group relative aspect-square rounded-[2rem] overflow-hidden bg-arlan-linen shadow-xl">
                   <div className="absolute inset-0 bg-gradient-to-t from-arlan-espresso/80 via-transparent to-transparent z-10" />
-                  <Image src="/mobiliario/03.png" alt="Salas y Bancos" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <Image src="/mobiliario/mesas_y_bancos.png" alt="Salas y Bancos" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute bottom-8 left-8 z-20">
                     <h3 className="text-white text-3xl font-heading mb-2">Salas & Bancos</h3>
                     <p className="text-white/80 font-sans text-sm tracking-wider uppercase">Explorar categoría</p>
