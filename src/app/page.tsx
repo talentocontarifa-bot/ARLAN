@@ -20,8 +20,10 @@ export default function Home() {
   return (
     <>
       {/* FULLSCREEN INTRO LOADER */}
+      {/* FULLSCREEN INTRO LOADER */}
       <div
-        className={`fixed inset-0 z-[100] bg-[#A7AD91] flex flex-col items-center justify-center transition-all duration-1000 ease-in-out ${showIntro ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
+        onClick={() => setShowIntro(false)}
+        className={`fixed inset-0 z-[100] bg-[#A7AD91] flex flex-col items-center justify-center transition-all duration-1000 ease-in-out cursor-pointer ${showIntro ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
           }`}
       >
         <div className="relative w-72 h-40 md:w-96 md:h-52 animate-float">
@@ -33,6 +35,7 @@ export default function Home() {
             <span className="inline-block animate-float-2">de tus sueños</span>
           </p>
         </div>
+        <p className="absolute bottom-8 text-arlan-espresso/60 text-[10px] uppercase font-bold tracking-widest animate-pulse font-sans">Click para entrar</p>
       </div>
 
       <div className={`min-h-screen flex flex-col bg-[#F7F1E5] text-arlan-espresso font-sans transition-opacity duration-1000 delay-500 ${showIntro ? "opacity-0" : "opacity-100"}`}>
@@ -92,98 +95,107 @@ export default function Home() {
             </div>
           </section>
 
-          {/* DESIGN PHILOSOPHY */}
-          <section className="py-32 bg-white/40">
-            <div className="max-w-7xl mx-auto px-4 md:px-8">
-              <div className="grid md:grid-cols-2 gap-20 items-center">
-
-                <div className="relative flex justify-center order-2 md:order-1">
-                  <div className="grid grid-cols-2 gap-6 w-full max-w-md">
-                    <div className="aspect-[4/5] bg-arlan-willow rounded-3xl shadow-2xl translate-y-8" />
-                    <div className="aspect-[4/5] bg-arlan-sand rounded-3xl shadow-2xl overflow-hidden relative">
-                      <Image src="/images/hero-2.png" alt="Detail" fill className="object-cover opacity-80" />
-                    </div>
-                    <div className="col-span-2 aspect-video bg-arlan-espresso rounded-3xl p-10 flex flex-col justify-end text-white relative overflow-hidden">
-                      <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
-                      <span className="text-arlan-wheat text-[10px] tracking-[0.4em] uppercase mb-4 font-bold">Nuestro Enfoque</span>
-                      <h3 className="text-4xl font-heading leading-tight font-medium">Mobiliario con <br /> alma propia.</h3>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="space-y-10 order-1 md:order-2">
-                  <div className="space-y-6">
-                    <h2 className="text-5xl md:text-6xl font-heading text-arlan-espresso leading-tight font-bold tracking-tight">
-                      Elegancia funcional <br /> hecha a medida.
-                    </h2>
-                    <p className="text-arlan-hazelnut text-xl font-light leading-relaxed max-w-xl">
-                      Creemos en la belleza de lo auténtico. Nuestra colección combina materiales nobles con diseños audaces para transformar cualquier espacio en una obra de arte habitable.
-                    </p>
-                  </div>
-
-                  <div className="pt-8 grid grid-cols-1 sm:grid-cols-2 gap-12 items-start">
-                    <div className="space-y-4 border-t border-arlan-truffle/20 pt-6">
-                      <h4 className="font-heading font-bold text-arlan-sand uppercase tracking-widest text-[11px]">Orgánico</h4>
-                      <p className="text-arlan-truffle text-sm leading-relaxed font-light">Maderas certificadas y textiles naturales con tacto premium seleccionados a mano.</p>
-                    </div>
-                    <div className="space-y-4 border-t border-arlan-truffle/20 pt-6">
-                      <h4 className="font-heading font-bold text-arlan-willow uppercase tracking-widest text-[11px]">Exclusivo</h4>
-                      <p className="text-arlan-truffle text-sm leading-relaxed font-light">Diseños únicos desarrollados por artesanos especializados para piezas irrepetibles.</p>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </section>
-
-
-          {/* PORTFOLIO HIGHLIGHTS */}
-          <section className="py-32 relative">
-            <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row justify-between items-end mb-24 gap-6 relative z-10">
-              <div className="space-y-4 relative">
-                <span className="text-arlan-sand font-heading font-bold tracking-[0.4em] uppercase text-[10px] block pl-1">Colección Exclusiva</span>
-                <h2 className="text-6xl md:text-8xl font-heading font-bold text-arlan-espresso tracking-tighter">
-                  Escenarios <br /> <span className="text-transparent border-text-espresso border-2" style={{ WebkitTextStroke: '1px #2A2421', color: 'transparent' }}>inolvidables.</span>
-                </h2>
-              </div>
-              <Link href="/gallery" className="text-arlan-espresso font-heading font-bold text-[10px] uppercase tracking-[0.3em] border-b-2 border-arlan-espresso pb-2 hover:text-arlan-willow hover:border-arlan-willow transition-all">Explorar Portafolio</Link>
+          {/* GALLERY MARQUEE */}
+          <section className="py-24 bg-arlan-espresso overflow-hidden relative">
+            <div className="text-center mb-16 space-y-4 relative z-10">
+              <span className="text-arlan-sand font-sans tracking-[0.4em] uppercase text-xs">Exclusividad</span>
+              <h2 className="text-5xl md:text-6xl font-heading font-medium text-arlan-linen">Nuestra Colección</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 md:px-8">
-              <div className="relative aspect-[3/4] rounded-[2.5rem] overflow-hidden group">
-                <Image src="/images/hero-1.png" alt="Project" fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-arlan-espresso/20 group-hover:bg-transparent transition-colors" />
+            <div className="relative w-full overflow-hidden flex flex-col gap-6">
+              {/* Velo difuminado para los bordes del marquee */}
+              <div className="absolute inset-y-0 left-0 w-24 md:w-48 bg-gradient-to-r from-arlan-espresso to-transparent z-10" />
+              <div className="absolute inset-y-0 right-0 w-24 md:w-48 bg-gradient-to-l from-arlan-espresso to-transparent z-10" />
+
+              {/* Top Marquee (Left) */}
+              <div className="flex w-[200%] md:w-[150%] animate-marquee-left gap-6">
+                {[1, 2, 3, 4, 5, 1, 2, 3, 4, 5].map((num, i) => (
+                  <div key={i} className="relative w-64 h-80 md:w-80 md:h-96 rounded-3xl overflow-hidden shrink-0 shadow-2xl">
+                    <Image src={`/gallery/0${num}.png`} alt={`Gallery ${num}`} fill className="object-cover" />
+                  </div>
+                ))}
               </div>
-              <div className="relative aspect-[3/4] rounded-[2.5rem] overflow-hidden group translate-y-12">
-                <Image src="/images/hero-2.png" alt="Project" fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-arlan-espresso/20 group-hover:bg-transparent transition-colors" />
-              </div>
-              <div className="relative aspect-[3/4] rounded-[2.5rem] overflow-hidden group">
-                <Image src="/images/hero-1.png" alt="Project" fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-arlan-espresso/20 group-hover:bg-transparent transition-colors" />
+              {/* Bottom Marquee (Right) */}
+              <div className="flex w-[200%] md:w-[150%] animate-marquee-right gap-6">
+                {[5, 6, 7, 8, 9, 5, 6, 7, 8, 9].map((num, i) => (
+                  <div key={i} className="relative w-64 h-80 md:w-80 md:h-96 rounded-3xl overflow-hidden shrink-0 shadow-2xl">
+                    <Image src={`/gallery/0${num}.png`} alt={`Gallery ${num}`} fill className="object-cover" />
+                  </div>
+                ))}
               </div>
             </div>
-          </section>
-
-          {/* CTA - DARK PREMIUM ELEGANT */}
-          <section className="py-40 bg-arlan-espresso relative overflow-hidden">
-            {/* Subtle glowing elements */}
-            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-radial from-arlan-sand/20 to-transparent rounded-full blur-[80px] -translate-y-1/2 translate-x-1/3" />
-            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-radial from-arlan-willow/10 to-transparent rounded-full blur-[80px] translate-y-1/3 -translate-x-1/3" />
-
-            <div className="max-w-4xl mx-auto px-4 text-center space-y-12 relative z-10">
-              <h2 className="text-6xl md:text-8xl font-heading font-medium text-arlan-linen">Empieza <br /> tu historia.</h2>
-              <p className="text-arlan-wheat text-xl font-light tracking-wide">La exclusividad se siente. Nosotros la diseñamos para ti.</p>
-              <Link
-                href="/contact"
-                className="inline-block bg-arlan-linen text-arlan-espresso px-16 py-6 rounded-full font-heading font-bold transition-all duration-500 hover:bg-white hover:scale-105 shadow-[0_20px_50px_-10px_rgba(247,241,229,0.2)] tracking-[0.3em] uppercase text-[10px]"
-              >
-                Agendar Cita Privada
+            <div className="flex justify-center mt-12 relative z-10">
+              <Link href="/gallery" className="text-arlan-linen border-b border-arlan-linen pb-2 font-sans uppercase tracking-[0.2em] text-[10px] transition-all duration-300 hover:text-arlan-sand hover:border-arlan-sand">
+                Ver Portafolio Completo
               </Link>
             </div>
           </section>
 
+          {/* FURNITURE RENTAL HIGHLIGHTS */}
+          <section className="py-32 bg-white/40">
+            <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-20">
+              <div className="text-center space-y-4">
+                <span className="text-arlan-sand font-heading font-bold tracking-[0.4em] uppercase text-[10px]">Catálogo</span>
+                <h2 className="text-5xl md:text-6xl font-heading font-bold text-arlan-espresso tracking-tighter">
+                  Renta de Mobiliario
+                </h2>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {/* Sillas */}
+                <div className="group relative aspect-square rounded-[2rem] overflow-hidden bg-arlan-linen shadow-xl">
+                  <div className="absolute inset-0 bg-gradient-to-t from-arlan-espresso/80 via-transparent to-transparent z-10" />
+                  <Image src="/gallery/02.png" alt="Sillería" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <div className="absolute bottom-8 left-8 z-20">
+                    <h3 className="text-white text-3xl font-heading mb-2">Sillería</h3>
+                    <p className="text-white/80 font-sans text-sm tracking-wider uppercase">Explorar categoría</p>
+                  </div>
+                </div>
+                {/* Inflables */}
+                <div className="group relative aspect-square rounded-[2rem] overflow-hidden bg-arlan-linen shadow-xl md:-translate-y-8">
+                  <div className="absolute inset-0 bg-gradient-to-t from-arlan-espresso/80 via-transparent to-transparent z-10" />
+                  <Image src="/gallery/07.png" alt="Inflables" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <div className="absolute bottom-8 left-8 z-20">
+                    <h3 className="text-white text-3xl font-heading mb-2">Inflables</h3>
+                    <p className="text-white/80 font-sans text-sm tracking-wider uppercase">Explorar categoría</p>
+                  </div>
+                </div>
+                {/* Banquitos & Salas */}
+                <div className="group relative aspect-square rounded-[2rem] overflow-hidden bg-arlan-linen shadow-xl">
+                  <div className="absolute inset-0 bg-gradient-to-t from-arlan-espresso/80 via-transparent to-transparent z-10" />
+                  <Image src="/gallery/09.png" alt="Salas y Bancos" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <div className="absolute bottom-8 left-8 z-20">
+                    <h3 className="text-white text-3xl font-heading mb-2">Salas & Bancos</h3>
+                    <p className="text-white/80 font-sans text-sm tracking-wider uppercase">Explorar categoría</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex justify-center mt-12">
+                <Link href="/catalog" className="text-arlan-espresso border border-arlan-espresso hover:bg-arlan-espresso hover:text-white px-10 py-4 rounded-full font-sans uppercase tracking-[0.2em] text-xs transition-all duration-300">
+                  Ver todo el catálogo
+                </Link>
+              </div>
+            </div>
+          </section>
+
+          {/* EVENT CTA */}
+          <section className="py-32 bg-arlan-sand relative overflow-hidden flex items-center justify-center">
+            <div className="absolute inset-0 bg-[url('/gallery/04.png')] opacity-20 bg-cover bg-center mix-blend-multiply" />
+            <div className="absolute inset-0 bg-gradient-to-t from-arlan-sand via-arlan-sand/80 to-transparent" />
+
+            <div className="relative z-10 max-w-3xl text-center space-y-10 px-4">
+              <h2 className="text-6xl md:text-8xl font-heading font-medium text-arlan-espresso leading-tight">
+                Háblanos de <br /> <span className="text-white">tu evento.</span>
+              </h2>
+              <p className="text-arlan-espresso/80 font-sans text-lg max-w-xl mx-auto">
+                Materializamos tus ideas en escenarios de primer nivel. Cotiza hoy mismo tu mobiliario o diseño completo.
+              </p>
+              <Link href="/contact" className="inline-block bg-arlan-espresso text-white px-12 py-5 rounded-full font-sans uppercase tracking-[0.2em] text-xs transition-all duration-300 hover:bg-arlan-willow hover:-translate-y-1 shadow-2xl">
+                Solicitar Cotización
+              </Link>
+            </div>
+          </section>
 
         </main>
         <Footer />
