@@ -49,7 +49,7 @@ export default function Contact() {
                                     <div className="space-y-2 pt-1 border-l-2 border-transparent group-hover:border-[#F7F1E5] pl-4 transition-all duration-300">
                                         <h3 className="font-bold text-[#F7F1E5] uppercase tracking-[0.2em] text-[10px]">Atención Personalizada</h3>
                                         <p className="font-light hover:text-white transition-colors text-lg">
-                                            <a href="tel:+523331720331">33 3172 0331</a>
+                                            <a href="https://wa.me/5213331720331" target="_blank" rel="noopener noreferrer">+52 1 33 3172 0331</a>
                                         </p>
                                     </div>
                                 </div>
