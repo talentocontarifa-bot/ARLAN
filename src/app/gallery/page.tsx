@@ -3,14 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export default function GalleryPage() {
-    const images = [
-        "/images/hero-1.png",
-        "/images/hero-2.png",
-        "/images/hero-1.png",
-        "/images/hero-2.png",
-        "/images/hero-1.png",
-        "/images/hero-2.png",
-    ];
+    const images = Array.from({ length: 9 }, (_, i) => `/gallery/0${i + 1}.png`);
 
     return (
         <div className="min-h-screen flex flex-col bg-arlan-linen text-arlan-espresso font-sans">

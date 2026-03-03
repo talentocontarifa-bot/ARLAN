@@ -9,8 +9,8 @@
   --color-arlan-linen: #a7ad91;
   --color-arlan-espresso: #2A2421;
 
-  --font-sans: "kodomonoji", sans-serif;
-  --font-heading: "kodomonoji", sans-serif;
+  --font-sans: "aktiv-grotesk", sans-serif;
+  --font-heading: "kodomonoji", cursive;
   --font-script: "kodomonoji", cursive;
 
   --animate-float: float 12s ease-in-out infinite;
