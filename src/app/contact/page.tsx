@@ -1,10 +1,63 @@
-
 "use client";
 
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export default function Contact() {
+    const [formData, setFormData] = useState({
+        name: "",
+        phone: "",
+        email: "",
+        tema: "",
+        ninos: "",
+        detalles: ""
+    });
+
+    const [needs, setNeeds] = useState({
+        "Globos": false,
+        "Inflable": false,
+        "Mobiliario": false,
+        "Caballetes para pintar": false,
+        "Espejo de bienvenida": false,
+        "Paquete": false
+    });
+
+    const handleCheckboxConfig = (key: string) => {
+        setNeeds(prev => ({ ...prev, [key]: !prev[key as keyof typeof prev] }));
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setFormData(prev => ({ ...prev, [e.target.id]: e.target.value }));
+    };
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const selectedNeeds = Object.entries(needs)
+            .filter(([_, value]) => value)
+            .map(([key]) => key)
+            .join(", ");
+
+        const message = `¡Hola Arlan!\n\nMe interesa cotizar un evento.\n\n` +
+            `*Nombre:* ${formData.name}\n` +
+            `*Teléfono:* ${formData.phone}\n` +
+            `*Email:* ${formData.email}\n` +
+            `*Necesito:* ${selectedNeeds || 'No especificado'}\n` +
+            `*Tema de la decoración:* ${formData.tema || 'No aplicable'}\n` +
+            `*Cantidad de niños:* ${formData.ninos || 'No especificado'}\n` +
+            `*Detalles:* ${formData.detalles}`;
+
+        const waLink = "https://wa.me/5213331720331?text=" + encodeURIComponent(message);
+        const mailtoLink = "mailto:contacto@arlan.com?subject=Nueva solicitud de Cotización&body=" + encodeURIComponent(message);
+
+        // Open mail client
+        window.location.href = mailtoLink;
+        // Small delay so mail app can launch, then pop new tab for WhatsApp
+        setTimeout(() => {
+            window.open(waLink, '_blank');
+        }, 500);
+    };
+
     return (
         <div className="min-h-screen flex flex-col bg-arlan-linen text-arlan-espresso font-sans">
             <Navbar />
@@ -80,25 +133,62 @@ export default function Contact() {
                     {/* Form */}
                     <div className="bg-white p-10 md:p-16 rounded-[3rem] shadow-[0_50px_100px_-20px_rgba(42,36,33,0.1)] border border-arlan-linen">
                         <h2 className="text-4xl font-heading font-medium text-arlan-espresso mb-10">Cuéntanos más</h2>
-                        <form className="space-y-10">
+                        <form className="space-y-8" onSubmit={handleSubmit}>
                             <div className="grid md:grid-cols-2 gap-x-10 gap-y-8">
                                 <div className="space-y-3">
                                     <label htmlFor="name" className="block text-[10px] font-bold uppercase tracking-[0.2em] text-arlan-truffle ml-4">Nombre Completo</label>
-                                    <input type="text" id="name" className="w-full bg-arlan-linen/30 border-none p-5 text-arlan-espresso focus:ring-2 focus:ring-arlan-willow/20 outline-none transition-all rounded-[1.5rem]" placeholder="Tu nombre" />
+                                    <input type="text" id="name" value={formData.name} onChange={handleInputChange} className="w-full bg-arlan-linen/30 border-none p-5 text-arlan-espresso focus:ring-2 focus:ring-arlan-willow/20 outline-none transition-all rounded-[1.5rem]" placeholder="Tu nombre" required />
                                 </div>
                                 <div className="space-y-3">
                                     <label htmlFor="phone" className="block text-[10px] font-bold uppercase tracking-[0.2em] text-arlan-truffle ml-4">WhatsApp / Teléfono</label>
-                                    <input type="tel" id="phone" className="w-full bg-arlan-linen/30 border-none p-5 text-arlan-espresso focus:ring-2 focus:ring-arlan-willow/20 outline-none transition-all rounded-[1.5rem]" placeholder="(55) 1234 5678" />
+                                    <input type="tel" id="phone" value={formData.phone} onChange={handleInputChange} className="w-full bg-arlan-linen/30 border-none p-5 text-arlan-espresso focus:ring-2 focus:ring-arlan-willow/20 outline-none transition-all rounded-[1.5rem]" placeholder="(55) 1234 5678" required />
                                 </div>
                             </div>
-                            <div className="space-y-3">
-                                <label htmlFor="email" className="block text-[10px] font-bold uppercase tracking-[0.2em] text-arlan-truffle ml-4">Correo Electrónico</label>
-                                <input type="email" id="email" className="w-full bg-arlan-linen/30 border-none p-5 text-arlan-espresso focus:ring-2 focus:ring-arlan-willow/20 outline-none transition-all rounded-[1.5rem]" placeholder="tucorreo@ejemplo.com" />
+                            <div className="grid md:grid-cols-2 gap-x-10 gap-y-8">
+                                <div className="space-y-3">
+                                    <label htmlFor="email" className="block text-[10px] font-bold uppercase tracking-[0.2em] text-arlan-truffle ml-4">Correo Electrónico</label>
+                                    <input type="email" id="email" value={formData.email} onChange={handleInputChange} className="w-full bg-arlan-linen/30 border-none p-5 text-arlan-espresso focus:ring-2 focus:ring-arlan-willow/20 outline-none transition-all rounded-[1.5rem]" placeholder="tucorreo@ejemplo.com" required />
+                                </div>
+                                <div className="space-y-3">
+                                    <label htmlFor="ninos" className="block text-[10px] font-bold uppercase tracking-[0.2em] text-arlan-truffle ml-4">Cantidad de niños</label>
+                                    <input type="number" id="ninos" value={formData.ninos} onChange={handleInputChange} className="w-full bg-arlan-linen/30 border-none p-5 text-arlan-espresso focus:ring-2 focus:ring-arlan-willow/20 outline-none transition-all rounded-[1.5rem]" placeholder="Ej: 15" />
+                                </div>
                             </div>
+
                             <div className="space-y-3">
-                                <label htmlFor="message" className="block text-[10px] font-bold uppercase tracking-[0.2em] text-arlan-truffle ml-4">Detalles del Evento</label>
-                                <textarea id="message" rows={5} className="w-full bg-arlan-linen/30 border-none p-6 text-arlan-espresso focus:ring-2 focus:ring-arlan-willow/20 outline-none transition-all rounded-[2rem] resize-none" placeholder="¿Qué piezas te interesan y para qué fecha?"></textarea>
+                                <label htmlFor="tema" className="block text-[10px] font-bold uppercase tracking-[0.2em] text-arlan-truffle ml-4">Tema de la decoración</label>
+                                <input type="text" id="tema" value={formData.tema} onChange={handleInputChange} className="w-full bg-arlan-linen/30 border-none p-5 text-arlan-espresso focus:ring-2 focus:ring-arlan-willow/20 outline-none transition-all rounded-[1.5rem]" placeholder="Ej: Safari, Princesas, Minimalista..." />
                             </div>
+
+                            <div className="space-y-4">
+                                <label className="block text-[10px] font-bold uppercase tracking-[0.2em] text-arlan-truffle ml-4">¿Qué servicios te interesan?</label>
+                                <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+                                    {Object.keys(needs).map((key) => (
+                                        <label key={key} className="flex items-center space-x-3 cursor-pointer group">
+                                            <div className="relative flex items-center">
+                                                <input
+                                                    type="checkbox"
+                                                    className="peer sr-only"
+                                                    checked={needs[key as keyof typeof needs]}
+                                                    onChange={() => handleCheckboxConfig(key)}
+                                                />
+                                                <div className="w-5 h-5 rounded border border-arlan-truffle/30 flex items-center justify-center bg-white peer-checked:bg-arlan-willow peer-checked:border-arlan-willow transition-colors">
+                                                    <svg className={`w-3 h-3 text-white ${needs[key as keyof typeof needs] ? 'opacity-100' : 'opacity-0'} transition-opacity`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <span className="text-sm text-arlan-espresso font-medium group-hover:text-arlan-willow transition-colors">{key}</span>
+                                        </label>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="space-y-3">
+                                <label htmlFor="detalles" className="block text-[10px] font-bold uppercase tracking-[0.2em] text-arlan-truffle ml-4">Detalles adicionales</label>
+                                <textarea id="detalles" value={formData.detalles} onChange={handleInputChange} rows={3} className="w-full bg-arlan-linen/30 border-none p-6 text-arlan-espresso focus:ring-2 focus:ring-arlan-willow/20 outline-none transition-all rounded-[2rem] resize-none" placeholder="Fecha del evento, inquietudes extra..."></textarea>
+                            </div>
+
                             <button type="submit" className="w-full bg-arlan-espresso text-white font-bold py-6 rounded-full hover:bg-arlan-willow transition-all duration-500 shadow-2xl uppercase tracking-[0.3em] text-[10px]">
                                 Enviar Solicitud de Cotización
                             </button>

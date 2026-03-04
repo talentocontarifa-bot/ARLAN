@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import InteractiveMarquee from "@/components/InteractiveMarquee";
 
 export default function Home() {
   const [showIntro, setShowIntro] = useState(true);
@@ -95,26 +96,7 @@ export default function Home() {
             </div>
 
             <div className="relative w-full overflow-hidden flex flex-col gap-6">
-              {/* Velo difuminado para los bordes del marquee */}
-              <div className="absolute inset-y-0 left-0 w-24 md:w-48 bg-gradient-to-r from-[#F7F1E5] to-transparent z-10" />
-              <div className="absolute inset-y-0 right-0 w-24 md:w-48 bg-gradient-to-l from-[#F7F1E5] to-transparent z-10" />
-
-              {/* Top Marquee (Left) */}
-              <div className="flex w-[200%] md:w-[150%] animate-marquee-left gap-6">
-                {[1, 2, 3, 4, 5, 1, 2, 3, 4, 5].map((num, i) => (
-                  <div key={i} className="relative w-64 h-80 md:w-80 md:h-96 rounded-3xl overflow-hidden shrink-0 shadow-2xl">
-                    <Image src={`/gallery/0${num}.png`} alt={`Gallery ${num}`} fill className="object-cover" />
-                  </div>
-                ))}
-              </div>
-              {/* Bottom Marquee (Right) */}
-              <div className="flex w-[200%] md:w-[150%] animate-marquee-right gap-6">
-                {[5, 6, 7, 8, 9, 5, 6, 7, 8, 9].map((num, i) => (
-                  <div key={i} className="relative w-64 h-80 md:w-80 md:h-96 rounded-3xl overflow-hidden shrink-0 shadow-2xl">
-                    <Image src={`/gallery/0${num}.png`} alt={`Gallery ${num}`} fill className="object-cover" />
-                  </div>
-                ))}
-              </div>
+              <InteractiveMarquee />
             </div>
           </section>
 
