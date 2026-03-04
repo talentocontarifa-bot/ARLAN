@@ -42,7 +42,7 @@ export default function Footer() {
                             <li><a href="https://wa.me/5213331720331" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">+52 1 33 3172 0331</a></li>
                             <li><a href="mailto:hola@arlan.com" className="hover:text-white transition-colors">hola@arlan.com</a></li>
                             <li className="pt-4 flex justify-center md:justify-start gap-8">
-                                <a href="#" className="text-arlan-wheat hover:text-white transition-colors text-[10px] uppercase font-bold tracking-widest">IG</a>
+                                <a href="https://www.instagram.com/arlan_celebrations/" target="_blank" rel="noopener noreferrer" className="text-arlan-wheat hover:text-white transition-colors text-[10px] uppercase font-bold tracking-widest">IG</a>
                                 <a href="#" className="text-arlan-wheat hover:text-white transition-colors text-[10px] uppercase font-bold tracking-widest">FB</a>
                                 <a href="https://wa.me/5213331720331" target="_blank" rel="noopener noreferrer" className="text-arlan-wheat hover:text-white transition-colors text-[10px] uppercase font-bold tracking-widest">WA</a>
                             </li>
