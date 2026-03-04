@@ -21,6 +21,11 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: "ARLAN | Mobiliario & Celebraciones",
   description: "Diseño y renta de mobiliario exclusivo para eventos inolvidables.",
+  openGraph: {
+    title: "ARLAN | Mobiliario & Celebraciones",
+    description: "Diseño y renta de mobiliario exclusivo para eventos inolvidables.",
+    images: ["/whatsapp_perfil.webp"],
+  },
 };
 
 export default function RootLayout({

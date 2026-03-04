@@ -38,6 +38,18 @@ export default function InteractiveMarquee() {
         }
     }, [lightboxApi, lightboxIndex]);
 
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (lightboxIndex === null) return;
+            if (e.key === 'Escape') setLightboxIndex(null);
+            if (e.key === 'ArrowLeft' && lightboxApi) lightboxApi.scrollPrev();
+            if (e.key === 'ArrowRight' && lightboxApi) lightboxApi.scrollNext();
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [lightboxApi, lightboxIndex]);
+
     const scrollPrev = useCallback((e: React.MouseEvent) => {
         e.stopPropagation();
         if (lightboxApi) lightboxApi.scrollPrev();
@@ -104,7 +116,7 @@ export default function InteractiveMarquee() {
                         <div className="flex touch-pan-y h-full items-center">
                             {allImages.map((src, idx) => (
                                 <div key={idx} className="relative flex-[0_0_100%] h-full flex justify-center items-center py-12 px-4 md:px-24">
-                                    <div className="relative w-full h-full max-h-[85vh] animate-fade-in-up">
+                                    <div className="relative w-full h-full max-h-[85vh] animate-fade-in-up rounded-3xl overflow-hidden shadow-2xl bg-arlan-espresso/20">
                                         <Image src={src} alt="Popup" fill className="object-contain pointer-events-none" priority />
                                     </div>
                                 </div>

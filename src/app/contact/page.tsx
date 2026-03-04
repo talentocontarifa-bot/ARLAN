@@ -60,7 +60,7 @@ export default function Contact() {
     const handleSubmitEmail = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         const message = buildMessage();
-        const mailtoLink = "mailto:contacto@arlan.com?subject=Nueva solicitud de Cotización&body=" + encodeURIComponent(message);
+        const mailtoLink = "mailto:arlan_balloon@gmail.com?subject=Nueva solicitud de Cotización&body=" + encodeURIComponent(message);
         window.location.href = mailtoLink;
     };
 
@@ -102,8 +102,8 @@ export default function Contact() {
                                 </div>
 
                                 <div className="flex items-start gap-8 group">
-                                    <div className="w-14 h-14 rounded-2xl bg-[#F7F1E5]/10 flex flex-col items-center justify-center overflow-hidden border border-[#F7F1E5]/20 shrink-0 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(247,241,229,0.3)] transition-all duration-300 relative">
-                                        <Image src="/whatsapp_perfil.webp" alt="WhatsApp Arlan" fill className="object-cover" />
+                                    <div className="w-14 h-14 rounded-2xl bg-[#F7F1E5]/10 flex items-center justify-center text-xl shadow-lg border border-[#F7F1E5]/20 shrink-0 group-hover:bg-[#F7F1E5] group-hover:text-arlan-espresso transition-all duration-300">
+                                        📞
                                     </div>
                                     <div className="space-y-2 pt-1 border-l-2 border-transparent group-hover:border-[#F7F1E5] pl-4 transition-all duration-300">
                                         <h3 className="font-bold text-[#F7F1E5] uppercase tracking-[0.2em] text-[10px]">Atención Personalizada</h3>
@@ -120,7 +120,7 @@ export default function Contact() {
                                     <div className="space-y-2 pt-1 border-l-2 border-transparent group-hover:border-[#F7F1E5] pl-4 transition-all duration-300">
                                         <h3 className="font-bold text-[#F7F1E5] uppercase tracking-[0.2em] text-[10px]">Email</h3>
                                         <p className="font-light hover:text-white transition-colors text-lg">
-                                            <a href="mailto:contacto@arlan.com">contacto@arlan.com</a>
+                                            <a href="mailto:arlan_balloon@gmail.com">arlan_balloon@gmail.com</a>
                                         </p>
                                     </div>
                                 </div>
