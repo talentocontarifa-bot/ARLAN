@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
 import Image from "next/image";
-import { X } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function InteractiveMarquee() {
     const [emblaRef1] = useEmblaCarousel({ loop: true, dragFree: true }, [
@@ -14,15 +14,39 @@ export default function InteractiveMarquee() {
         AutoScroll({ playOnInit: true, speed: 1.5, stopOnInteraction: false, direction: "backward" })
     ]);
 
-    const [lightboxImg, setLightboxImg] = useState<string | null>(null);
+    const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-    const images1 = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5].map((num) => `/gallery/0${num}.png`);
-    const images2 = [5, 6, 7, 8, 9, 5, 6, 7, 8, 9].map((num) => `/gallery/0${num}.png`);
+    // Create a unique array of all images for the lightbox
+    const allImages = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => `/gallery/0${num}.png`);
+
+    const [lightboxRef, lightboxApi] = useEmblaCarousel({
+        loop: true,
+        startIndex: lightboxIndex || 0
+    });
+
+    const images1 = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5];
+    const images2 = [5, 6, 7, 8, 9, 5, 6, 7, 8, 9];
 
     useEffect(() => {
-        if (lightboxImg) document.body.style.overflow = "hidden";
+        if (lightboxIndex !== null) document.body.style.overflow = "hidden";
         else document.body.style.overflow = "auto";
-    }, [lightboxImg]);
+    }, [lightboxIndex]);
+
+    useEffect(() => {
+        if (lightboxApi && lightboxIndex !== null) {
+            lightboxApi.scrollTo(lightboxIndex, true);
+        }
+    }, [lightboxApi, lightboxIndex]);
+
+    const scrollPrev = useCallback((e: React.MouseEvent) => {
+        e.stopPropagation();
+        if (lightboxApi) lightboxApi.scrollPrev();
+    }, [lightboxApi]);
+
+    const scrollNext = useCallback((e: React.MouseEvent) => {
+        e.stopPropagation();
+        if (lightboxApi) lightboxApi.scrollNext();
+    }, [lightboxApi]);
 
     return (
         <>
@@ -32,13 +56,13 @@ export default function InteractiveMarquee() {
 
                 <div className="overflow-hidden embla-viewport" ref={emblaRef1}>
                     <div className="flex gap-6 touch-pan-y pl-4">
-                        {images1.map((src, i) => (
+                        {images1.map((num, i) => (
                             <div
                                 key={i}
-                                onClick={() => setLightboxImg(src)}
+                                onClick={() => setLightboxIndex(num - 1)}
                                 className="relative w-64 h-80 md:w-80 md:h-96 rounded-3xl overflow-hidden shrink-0 shadow-2xl transition-transform hover:scale-105 cursor-pointer ml-4"
                             >
-                                <Image src={src} alt="Gallery item" fill className="object-cover pointer-events-none" sizes="(max-width: 768px) 100vw, 33vw" />
+                                <Image src={`/gallery/0${num}.png`} alt="Gallery item" fill className="object-cover pointer-events-none" sizes="(max-width: 768px) 100vw, 33vw" />
                             </div>
                         ))}
                     </div>
@@ -46,29 +70,46 @@ export default function InteractiveMarquee() {
 
                 <div className="overflow-hidden embla-viewport" ref={emblaRef2}>
                     <div className="flex gap-6 touch-pan-y pl-4">
-                        {images2.map((src, i) => (
+                        {images2.map((num, i) => (
                             <div
                                 key={i}
-                                onClick={() => setLightboxImg(src)}
+                                onClick={() => setLightboxIndex(num - 1)}
                                 className="relative w-64 h-80 md:w-80 md:h-96 rounded-3xl overflow-hidden shrink-0 shadow-2xl transition-transform hover:scale-105 cursor-pointer ml-4"
                             >
-                                <Image src={src} alt="Gallery item" fill className="object-cover pointer-events-none" sizes="(max-width: 768px) 100vw, 33vw" />
+                                <Image src={`/gallery/0${num}.png`} alt="Gallery item" fill className="object-cover pointer-events-none" sizes="(max-width: 768px) 100vw, 33vw" />
                             </div>
                         ))}
                     </div>
                 </div>
             </div>
 
-            {lightboxImg && (
+            {lightboxIndex !== null && (
                 <div
-                    className="fixed inset-0 z-[200] bg-black/90 flex items-center justify-center p-4 backdrop-blur-sm"
-                    onClick={() => setLightboxImg(null)}
+                    className="fixed inset-0 z-[200] bg-black/95 flex items-center justify-center backdrop-blur-md touch-none"
+                    onClick={() => setLightboxIndex(null)}
                 >
                     <button className="absolute top-6 right-6 text-white hover:text-arlan-wheat transition-colors backdrop-blur-md bg-white/10 p-2 rounded-full cursor-pointer z-10">
                         <X size={32} />
                     </button>
-                    <div className="relative w-full max-w-5xl h-[85vh] animate-fade-in-up flex justify-center items-center" onClick={(e) => e.stopPropagation()}>
-                        <Image src={lightboxImg} alt="Popup" fill className="object-contain" priority />
+
+                    <button onClick={scrollPrev} className="absolute left-4 md:left-12 text-white hover:text-arlan-wheat transition-colors backdrop-blur-md bg-white/10 p-3 rounded-full cursor-pointer z-10 shadow-lg">
+                        <ChevronLeft size={32} />
+                    </button>
+
+                    <button onClick={scrollNext} className="absolute right-4 md:right-12 text-white hover:text-arlan-wheat transition-colors backdrop-blur-md bg-white/10 p-3 rounded-full cursor-pointer z-10 shadow-lg">
+                        <ChevronRight size={32} />
+                    </button>
+
+                    <div className="w-full max-w-7xl overflow-hidden embla-viewport h-full cursor-grab active:cursor-grabbing" ref={lightboxRef} onClick={(e) => e.stopPropagation()}>
+                        <div className="flex touch-pan-y h-full items-center">
+                            {allImages.map((src, idx) => (
+                                <div key={idx} className="relative flex-[0_0_100%] h-full flex justify-center items-center py-12 px-4 md:px-24">
+                                    <div className="relative w-full h-full max-h-[85vh] animate-fade-in-up">
+                                        <Image src={src} alt="Popup" fill className="object-contain pointer-events-none" priority />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             )}
