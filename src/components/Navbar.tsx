@@ -27,7 +27,6 @@ export default function Navbar() {
                         <div className="ml-10 flex items-baseline space-x-10">
                             <NavLink href="/">Inicio</NavLink>
                             <NavLink href="/gallery">Galería</NavLink>
-                            <NavLink href="/catalog">Catálogo</NavLink>
                             <NavLink href="/contact">Contacto</NavLink>
                         </div>
                     </div>
@@ -49,7 +48,6 @@ export default function Navbar() {
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                         <MobileNavLink href="/" onClick={() => setIsOpen(false)}>Inicio</MobileNavLink>
                         <MobileNavLink href="/gallery" onClick={() => setIsOpen(false)}>Galería</MobileNavLink>
-                        <MobileNavLink href="/catalog" onClick={() => setIsOpen(false)}>Catálogo</MobileNavLink>
                         <MobileNavLink href="/contact" onClick={() => setIsOpen(false)}>Contacto</MobileNavLink>
                     </div>
                 </div>
