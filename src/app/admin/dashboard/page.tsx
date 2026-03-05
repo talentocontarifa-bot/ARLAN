@@ -22,6 +22,7 @@ export default function Dashboard() {
     // Form inputs for Catalog
     const [itemName, setItemName] = useState("");
     const [itemCat, setItemCat] = useState("Mobiliario de Autor");
+    const [itemDesc, setItemDesc] = useState("");
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -94,11 +95,13 @@ export default function Dashboard() {
                 await addDoc(collection(db, "catalog"), {
                     name: itemName,
                     category: itemCat,
+                    description: itemDesc,
                     url: downloadURL,
                     filename: file.name,
                     createdAt: serverTimestamp()
                 });
                 setItemName("");
+                setItemDesc("");
                 fetchCatalog();
                 setUploading(false);
                 setProgress(0);
@@ -201,16 +204,22 @@ export default function Dashboard() {
 
                 {tab === "catalog" && (
                     <section className="space-y-10">
-                        <form onSubmit={handleAddCatalogItem} className="bg-white p-8 rounded-3xl shadow-sm border border-arlan-truffle/10 flex flex-col lg:flex-row gap-6 items-end">
-                            <div className="flex-1 w-full space-y-2">
-                                <label className="block text-[10px] font-bold uppercase tracking-widest text-arlan-truffle ml-2">Nombre de Pieza</label>
-                                <input type="text" required value={itemName} onChange={e => setItemName(e.target.value)} className="w-full bg-[#F7F1E5]/50 border-none p-4 rounded-2xl outline-none focus:ring-2 focus:ring-arlan-willow" placeholder="Ej. Silla Avantgarde" />
+                        <form onSubmit={handleAddCatalogItem} className="bg-white p-8 rounded-3xl shadow-sm border border-arlan-truffle/10 flex flex-col gap-6">
+                            <div className="flex flex-col lg:flex-row gap-6 items-end">
+                                <div className="flex-1 w-full space-y-2">
+                                    <label className="block text-[10px] font-bold uppercase tracking-widest text-arlan-truffle ml-2">Nombre de Pieza</label>
+                                    <input type="text" required value={itemName} onChange={e => setItemName(e.target.value)} className="w-full bg-[#F7F1E5]/50 border-none p-4 rounded-2xl outline-none focus:ring-2 focus:ring-arlan-willow" placeholder="Ej. Silla Avantgarde" />
+                                </div>
+                                <div className="w-full lg:w-64 space-y-2">
+                                    <label className="block text-[10px] font-bold uppercase tracking-widest text-arlan-truffle ml-2">Subir Foto Única</label>
+                                    <input type="file" name="image" required accept="image/*" className="w-full text-sm text-arlan-truffle file:mr-4 file:py-3 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-arlan-truffle/10 file:text-arlan-espresso hover:file:bg-arlan-truffle/20 file:cursor-pointer p-1" />
+                                </div>
                             </div>
-                            <div className="w-full lg:w-48 space-y-2">
-                                <label className="block text-[10px] font-bold uppercase tracking-widest text-arlan-truffle ml-2">Subir Foto Única</label>
-                                <input type="file" name="image" required accept="image/*" className="w-full text-sm text-arlan-truffle file:mr-4 file:py-3 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-arlan-truffle/10 file:text-arlan-espresso hover:file:bg-arlan-truffle/20 file:cursor-pointer p-1" />
+                            <div className="space-y-2">
+                                <label className="block text-[10px] font-bold uppercase tracking-widest text-arlan-truffle ml-2">Descripción (Opcional)</label>
+                                <textarea rows={2} value={itemDesc} onChange={e => setItemDesc(e.target.value)} className="w-full bg-[#F7F1E5]/50 border-none p-4 rounded-2xl outline-none focus:ring-2 focus:ring-arlan-willow resize-none" placeholder="Describe los materiales, colores, medidas o detalles extras de la pieza..."></textarea>
                             </div>
-                            <button type="submit" disabled={uploading} className="w-full lg:w-auto h-[52px] bg-arlan-espresso text-white px-8 rounded-2xl flex justify-center items-center gap-2 hover:bg-arlan-willow transition-colors shrink-0 disabled:opacity-50">
+                            <button type="submit" disabled={uploading} className="w-full lg:w-auto self-end h-[52px] bg-arlan-espresso text-white px-8 rounded-2xl flex justify-center items-center gap-2 hover:bg-arlan-willow transition-colors shrink-0 disabled:opacity-50">
                                 <Plus size={20} /> Añadir al Catálogo
                             </button>
                         </form>
