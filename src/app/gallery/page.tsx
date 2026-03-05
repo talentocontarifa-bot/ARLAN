@@ -19,7 +19,12 @@ export default function GalleryPage() {
                 const q = query(collection(db, "gallery"), orderBy("createdAt", "desc"));
                 const snapshot = await getDocs(q);
                 if (!snapshot.empty) {
-                    setImages(snapshot.docs.map(doc => doc.data().url));
+                    const fetched = snapshot.docs.map(doc => doc.data().url);
+                    if (fetched.length < 6) {
+                        setImages([...fetched, ...fallbackImages]);
+                    } else {
+                        setImages(fetched);
+                    }
                 } else {
                     setImages(fallbackImages);
                 }

@@ -20,7 +20,13 @@ export default function InteractiveMarquee() {
                 const q = query(collection(db, "gallery"), orderBy("createdAt", "desc"));
                 const snapshot = await getDocs(q);
                 if (!snapshot.empty) {
-                    setImages(snapshot.docs.map(doc => doc.data().url));
+                    const fetched = snapshot.docs.map(doc => doc.data().url);
+                    if (fetched.length < 6) {
+                        // Mantenemos las fotos de relleno para que las 2 filas del marquee no se rompan
+                        setImages([...fetched, ...fallbackImages]);
+                    } else {
+                        setImages(fetched);
+                    }
                 } else {
                     setImages(fallbackImages);
                 }
@@ -34,7 +40,11 @@ export default function InteractiveMarquee() {
 
     // Provide default split for the 2 marquees
     const images1 = images.length > 0 ? images.slice(0, Math.ceil(images.length / 2)) : fallbackImages.slice(0, 5);
-    const images2 = images.length > 0 ? images.slice(Math.ceil(images.length / 2)) : fallbackImages.slice(5, 9);
+    let images2 = images.length > 0 ? images.slice(Math.ceil(images.length / 2)) : fallbackImages.slice(5, 9);
+
+    // Fallback de seguridad pura si por alguna razón images2 queda vacío
+    if (images.length > 0 && images2.length === 0) images2 = [...images1];
+
     // Duplicate lists to ensure scrolling effect doesn't break if few images
     const row1 = [...images1, ...images1, ...images1, ...images1];
     const row2 = [...images2, ...images2, ...images2, ...images2];
