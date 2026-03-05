@@ -1,9 +1,37 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 export default function GalleryPage() {
-    const images = Array.from({ length: 9 }, (_, i) => `/gallery/0${i + 1}.png`);
+    const [images, setImages] = useState<string[]>([]);
+
+    // Default images fallback
+    const fallbackImages = Array.from({ length: 9 }, (_, i) => `/gallery/0${i + 1}.png`);
+
+    useEffect(() => {
+        const fetchGallery = async () => {
+            try {
+                const q = query(collection(db, "gallery"), orderBy("createdAt", "desc"));
+                const snapshot = await getDocs(q);
+                if (!snapshot.empty) {
+                    setImages(snapshot.docs.map(doc => doc.data().url));
+                } else {
+                    setImages(fallbackImages);
+                }
+            } catch (err) {
+                console.error("No se pudo cargar la galería", err);
+                setImages(fallbackImages);
+            }
+        };
+        fetchGallery();
+    }, []);
+
+    const displayImages = images.length > 0 ? images : fallbackImages;
 
     return (
         <div className="min-h-screen flex flex-col bg-arlan-linen text-arlan-espresso font-sans">
@@ -17,7 +45,7 @@ export default function GalleryPage() {
                     </div>
 
                     <div className="columns-1 md:columns-2 lg:columns-3 gap-12 space-y-12">
-                        {images.map((src, index) => (
+                        {displayImages.map((src, index) => (
                             <div key={index} className="group relative overflow-hidden rounded-[3rem] shadow-2xl shadow-arlan-truffle/20 break-inside-avoid">
                                 <Image
                                     src={src}

@@ -6,6 +6,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import InteractiveMarquee from "@/components/InteractiveMarquee";
+import DynamicCatalog from "@/components/DynamicCatalog";
 
 export default function Home() {
   const [showIntro, setShowIntro] = useState(true);
@@ -109,35 +110,7 @@ export default function Home() {
                 </h2>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {/* Sillas */}
-                <div className="group relative aspect-square rounded-[2rem] overflow-hidden bg-arlan-linen shadow-xl">
-                  <div className="absolute inset-0 bg-gradient-to-t from-arlan-espresso/80 via-transparent to-transparent z-10" />
-                  <Image src="/mobiliario/silleria.png" alt="Sillería" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
-                  <div className="absolute bottom-8 left-8 z-20">
-                    <h3 className="text-white text-3xl font-heading mb-2">Sillería</h3>
-                    <p className="text-white/80 font-sans text-sm tracking-wider uppercase">Explorar categoría</p>
-                  </div>
-                </div>
-                {/* Inflables */}
-                <div className="group relative aspect-square rounded-[2rem] overflow-hidden bg-arlan-linen shadow-xl md:-translate-y-8">
-                  <div className="absolute inset-0 bg-gradient-to-t from-arlan-espresso/80 via-transparent to-transparent z-10" />
-                  <Image src="/mobiliario/inflable.png" alt="Inflables" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
-                  <div className="absolute bottom-8 left-8 z-20">
-                    <h3 className="text-white text-3xl font-heading mb-2">Inflables</h3>
-                    <p className="text-white/80 font-sans text-sm tracking-wider uppercase">Explorar categoría</p>
-                  </div>
-                </div>
-                {/* Banquitos & Salas */}
-                <div className="group relative aspect-square rounded-[2rem] overflow-hidden bg-arlan-linen shadow-xl">
-                  <div className="absolute inset-0 bg-gradient-to-t from-arlan-espresso/80 via-transparent to-transparent z-10" />
-                  <Image src="/mobiliario/mesas_y_bancos.png" alt="Salas y Bancos" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
-                  <div className="absolute bottom-8 left-8 z-20">
-                    <h3 className="text-white text-3xl font-heading mb-2">Salas & Bancos</h3>
-                    <p className="text-white/80 font-sans text-sm tracking-wider uppercase">Explorar categoría</p>
-                  </div>
-                </div>
-              </div>
+              <DynamicCatalog />
             </div>
           </section>
 
