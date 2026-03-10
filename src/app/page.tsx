@@ -66,7 +66,7 @@ export default function Home() {
 
                 <div className="flex flex-col sm:flex-row gap-5 justify-center md:justify-start pt-4">
                   <Link
-                    href="/gallery"
+                    href="#galeria"
                     className="bg-arlan-willow text-white hover:bg-arlan-espresso px-12 py-4 rounded-full font-heading font-medium transition-all duration-300 shadow-2xl shadow-arlan-willow/20 text-center tracking-wide inline-block"
                   >
                     Galería
@@ -91,7 +91,7 @@ export default function Home() {
           </section>
 
           {/* GALLERY MARQUEE */}
-          <section className="py-24 bg-[#F7F1E5] overflow-hidden relative">
+          <section id="galeria" className="py-24 bg-[#F7F1E5] overflow-hidden relative">
             <div className="text-center mb-16 space-y-4 relative z-10">
               <h2 className="text-5xl md:text-6xl font-heading font-bold text-arlan-espresso">Galería</h2>
             </div>

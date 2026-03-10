@@ -26,7 +26,6 @@ export default function Navbar() {
                     <div className="hidden md:flex items-center h-full">
                         <div className="ml-10 flex items-baseline space-x-10">
                             <NavLink href="/">Inicio</NavLink>
-                            <NavLink href="/gallery">Galería</NavLink>
                             <NavLink href="/contact">Contacto</NavLink>
                         </div>
                     </div>
@@ -47,7 +46,6 @@ export default function Navbar() {
                 <div className="md:hidden bg-arlan-linen border-t border-arlan-truffle/20 shadow-xl">
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                         <MobileNavLink href="/" onClick={() => setIsOpen(false)}>Inicio</MobileNavLink>
-                        <MobileNavLink href="/gallery" onClick={() => setIsOpen(false)}>Galería</MobileNavLink>
                         <MobileNavLink href="/contact" onClick={() => setIsOpen(false)}>Contacto</MobileNavLink>
                     </div>
                 </div>
