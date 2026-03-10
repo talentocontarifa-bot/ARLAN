@@ -7,7 +7,8 @@ import { collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp, query, or
 import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { LogOut, Trash2, UploadCloud, Image as ImageIcon, Briefcase, Plus } from "lucide-react";
+import { LogOut, Trash2, UploadCloud, Image as ImageIcon, Briefcase, Plus, Wand2 } from "lucide-react";
+import { enhanceDescription } from "@/app/actions/gemini";
 
 export default function Dashboard() {
     const [user, setUser] = useState<any>(null);
@@ -23,6 +24,21 @@ export default function Dashboard() {
     const [itemName, setItemName] = useState("");
     const [itemCat, setItemCat] = useState("Mobiliario de Autor");
     const [itemDesc, setItemDesc] = useState("");
+    const [isEnhancing, setIsEnhancing] = useState(false);
+
+    const handleEnhanceDescription = async () => {
+        if (!itemDesc.trim()) return alert("Por favor escribe una idea básica primero para que Gemini la mejore.");
+
+        setIsEnhancing(true);
+        const result = await enhanceDescription(itemDesc);
+        setIsEnhancing(false);
+
+        if (result.error) {
+            alert(result.error);
+        } else if (result.success && result.text) {
+            setItemDesc(result.text);
+        }
+    };
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -216,8 +232,19 @@ export default function Dashboard() {
                                 </div>
                             </div>
                             <div className="space-y-2">
-                                <label className="block text-[10px] font-bold uppercase tracking-widest text-arlan-truffle ml-2">Descripción (Opcional)</label>
-                                <textarea rows={2} value={itemDesc} onChange={e => setItemDesc(e.target.value)} className="w-full bg-[#F7F1E5]/50 border-none p-4 rounded-2xl outline-none focus:ring-2 focus:ring-arlan-willow resize-none" placeholder="Describe los materiales, colores, medidas o detalles extras de la pieza..."></textarea>
+                                <div className="flex justify-between items-center ml-2">
+                                    <label className="block text-[10px] font-bold uppercase tracking-widest text-arlan-truffle">Descripción (Opcional)</label>
+                                    <button
+                                        type="button"
+                                        onClick={handleEnhanceDescription}
+                                        disabled={isEnhancing}
+                                        className="text-[10px] font-bold uppercase tracking-widest text-[#B59F7C] hover:text-[#8C7A5E] bg-[#F7F1E5] px-3 py-1.5 rounded-full flex items-center gap-1.5 transition-colors disabled:opacity-50"
+                                    >
+                                        <Wand2 size={12} className={isEnhancing ? "animate-pulse" : ""} />
+                                        {isEnhancing ? "Mejorando..." : "Mejorar con Gemini"}
+                                    </button>
+                                </div>
+                                <textarea rows={2} value={itemDesc} onChange={e => setItemDesc(e.target.value)} disabled={isEnhancing} className="w-full bg-[#F7F1E5]/50 border-none p-4 rounded-2xl outline-none focus:ring-2 focus:ring-arlan-willow resize-none disabled:opacity-50" placeholder="Escribe ideas sueltas (ej: sillas blancas, muy comodas, madera fina) y dale a la Varita de Gemini..."></textarea>
                             </div>
                             <button type="submit" disabled={uploading} className="w-full lg:w-auto self-end h-[52px] bg-arlan-espresso text-white px-8 rounded-2xl flex justify-center items-center gap-2 hover:bg-arlan-willow transition-colors shrink-0 disabled:opacity-50">
                                 <Plus size={20} /> Añadir al Catálogo
