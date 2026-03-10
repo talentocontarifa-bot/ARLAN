@@ -7,8 +7,8 @@ import { collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp, query, or
 import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { LogOut, Trash2, UploadCloud, Image as ImageIcon, Briefcase, Plus, Wand2 } from "lucide-react";
-import { enhanceDescription } from "@/app/actions/gemini";
+import { LogOut, Trash2, UploadCloud, Image as ImageIcon, Briefcase, Plus, Wand2, SpellCheck } from "lucide-react";
+import { processTextWithGemini } from "@/app/actions/gemini";
 
 export default function Dashboard() {
     const [user, setUser] = useState<any>(null);
@@ -24,14 +24,16 @@ export default function Dashboard() {
     const [itemName, setItemName] = useState("");
     const [itemCat, setItemCat] = useState("Mobiliario de Autor");
     const [itemDesc, setItemDesc] = useState("");
+    const [aiPersonality, setAiPersonality] = useState("");
     const [isEnhancing, setIsEnhancing] = useState(false);
+    const [isChecking, setIsChecking] = useState(false);
 
-    const handleEnhanceDescription = async () => {
-        if (!itemDesc.trim()) return alert("Por favor escribe una idea básica primero para que Gemini la mejore.");
+    const handleAIAssist = async (mode: "spellcheck" | "enhance") => {
+        if (!itemDesc.trim()) return alert("Por favor escribe una idea básica primero para que Gemini trabaje.");
 
-        setIsEnhancing(true);
-        const result = await enhanceDescription(itemDesc);
-        setIsEnhancing(false);
+        mode === "enhance" ? setIsEnhancing(true) : setIsChecking(true);
+        const result = await processTextWithGemini(itemDesc, mode, aiPersonality);
+        mode === "enhance" ? setIsEnhancing(false) : setIsChecking(false);
 
         if (result.error) {
             alert(result.error);
@@ -231,20 +233,43 @@ export default function Dashboard() {
                                     <input type="file" name="image" required accept="image/*" className="w-full text-sm text-arlan-truffle file:mr-4 file:py-3 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-arlan-truffle/10 file:text-arlan-espresso hover:file:bg-arlan-truffle/20 file:cursor-pointer p-1" />
                                 </div>
                             </div>
-                            <div className="space-y-2">
-                                <div className="flex justify-between items-center ml-2">
-                                    <label className="block text-[10px] font-bold uppercase tracking-widest text-arlan-truffle">Descripción (Opcional)</label>
-                                    <button
-                                        type="button"
-                                        onClick={handleEnhanceDescription}
-                                        disabled={isEnhancing}
-                                        className="text-[10px] font-bold uppercase tracking-widest text-[#B59F7C] hover:text-[#8C7A5E] bg-[#F7F1E5] px-3 py-1.5 rounded-full flex items-center gap-1.5 transition-colors disabled:opacity-50"
-                                    >
-                                        <Wand2 size={12} className={isEnhancing ? "animate-pulse" : ""} />
-                                        {isEnhancing ? "Mejorando..." : "Mejorar con Gemini"}
-                                    </button>
+                            <div className="space-y-4">
+                                <div className="space-y-2">
+                                    <div className="flex justify-between items-center ml-2">
+                                        <label className="block text-[10px] font-bold uppercase tracking-widest text-arlan-truffle">Descripción de la Pieza</label>
+                                        <div className="flex gap-2">
+                                            <button
+                                                type="button"
+                                                onClick={() => handleAIAssist("spellcheck")}
+                                                disabled={isEnhancing || isChecking}
+                                                className="text-[10px] font-bold uppercase tracking-widest text-arlan-truffle hover:text-arlan-espresso bg-arlan-linen/50 px-3 py-1.5 rounded-full flex items-center gap-1.5 transition-colors disabled:opacity-50"
+                                            >
+                                                <SpellCheck size={12} className={isChecking ? "animate-pulse border-b-2" : ""} />
+                                                {isChecking ? "Corrigiendo..." : "Corregir Ortografía"}
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onClick={() => handleAIAssist("enhance")}
+                                                disabled={isEnhancing || isChecking}
+                                                className="text-[10px] font-bold uppercase tracking-widest text-[#B59F7C] hover:text-[#8C7A5E] bg-[#F7F1E5] px-3 py-1.5 rounded-full flex items-center gap-1.5 transition-colors disabled:opacity-50"
+                                            >
+                                                <Wand2 size={12} className={isEnhancing ? "animate-pulse" : ""} />
+                                                {isEnhancing ? "Mejorando..." : "Mejorar (Ventas)"}
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <textarea rows={2} value={itemDesc} onChange={e => setItemDesc(e.target.value)} disabled={isEnhancing || isChecking} className="w-full bg-[#F7F1E5]/50 border-none p-4 rounded-2xl outline-none focus:ring-2 focus:ring-arlan-willow resize-none disabled:opacity-50" placeholder="Escribe ideas sueltas (ej: sillas blancas, muy comodas, madera fina) y dale a la Varita de Gemini..."></textarea>
                                 </div>
-                                <textarea rows={2} value={itemDesc} onChange={e => setItemDesc(e.target.value)} disabled={isEnhancing} className="w-full bg-[#F7F1E5]/50 border-none p-4 rounded-2xl outline-none focus:ring-2 focus:ring-arlan-willow resize-none disabled:opacity-50" placeholder="Escribe ideas sueltas (ej: sillas blancas, muy comodas, madera fina) y dale a la Varita de Gemini..."></textarea>
+                                <div className="flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100">
+                                    <Wand2 size={16} className="text-arlan-truffle/50 shrink-0" />
+                                    <input
+                                        type="text"
+                                        value={aiPersonality}
+                                        onChange={e => setAiPersonality(e.target.value)}
+                                        placeholder="Personalizar Tono de la Varita (Ej. 'Escribe un poema épico', 'Habla como vendedor chilango', 'Elegante y francés')"
+                                        className="w-full bg-transparent border-none outline-none text-xs text-arlan-espresso placeholder:text-arlan-truffle/50"
+                                    />
+                                </div>
                             </div>
                             <button type="submit" disabled={uploading} className="w-full lg:w-auto self-end h-[52px] bg-arlan-espresso text-white px-8 rounded-2xl flex justify-center items-center gap-2 hover:bg-arlan-willow transition-colors shrink-0 disabled:opacity-50">
                                 <Plus size={20} /> Añadir al Catálogo
